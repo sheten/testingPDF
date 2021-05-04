@@ -31,7 +31,7 @@ export default class App extends Component {
           preview={true}
         >
           <Text x={35} y={25} size={40}>Octonyan loves jsPDF</Text>
-          {/* {/* <Image src={OctoCatImage} x={15} y={40} width={180} height={180} /> */}
+          <Image src={OctoCatImage} x={15} y={40} width={180} height={180} /> 
           <AddPage />
           <Table
             head={head}
