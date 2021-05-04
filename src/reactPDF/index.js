@@ -40,7 +40,7 @@ export default class App extends Component {
           <AddPage format='a6' orientation='l' />
           <Text x={10} y={10} color='red'>Sample</Text>
           <Line x1={20} y1={20} x2={60} y2={20} />
-          <AddPage /> */}
+          <AddPage /> 
           <Html sourceById='page' />
         </PDF>
         <Container id="page" style={invisibleStyle}>
