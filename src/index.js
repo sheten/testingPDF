@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+// import PDF from './reactPDF/index';
+// import PDF from './reactPDF';
+import PDF from './jsPDF';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <PDF />
   </React.StrictMode>,
   document.getElementById('root')
 );
