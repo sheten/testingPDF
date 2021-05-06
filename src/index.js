@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
 // import App from './App';
-// import PDF from './reactPDF/index';
-import PDF from './CreatePDF/jsPDF';
+import PDF from './reactPDF/index';
+// import PDF from './CreatePDF/jsPDF';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div style={{alignItems: "center", display: "flex", height: "500px", justifyContent: "center", width: "100%"}}>
+    {/* <div style={{alignItems: "center", display: "flex", height: "500px", justifyContent: "center", width: "100%"}}>
       <PDF />    
-    </div>
-    {/* <PDF/> */}
+    </div> */}
+    <PDF/>
   </React.StrictMode>,
   document.getElementById('root')
 );

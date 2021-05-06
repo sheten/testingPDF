@@ -9,7 +9,8 @@ function generatePDF() {
 
   // Title of Invoice
   pdf.setFontSize(18);
-  pdf.text("Saskaita Faktura", 83, 40);
+  pdf.setFont("Helvetica");
+  pdf.text("Sąskaita Faktūra ąčęėįšųū90-ž", 83, 40);
   pdf.setFontSize(13);
   pdf.text("Sutarties Nr. 21/05-04", 85, 46);
   pdf.text("2021-05-04", 95, 52);
