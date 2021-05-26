@@ -1,34 +1,34 @@
-import { PDFViewer, Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import { GetStaticProps } from 'next'
+
+import { invoiceContentStructure } from "../interfaces"
+import { invoiceContentData } from "../utils/sample-data"
+
+import PDF from "../components/PDF";
 
 export interface PDFProps {
+  invoiceContent: invoiceContentStructure
+}
+
+const HOC_PDF = ({ invoiceContent }: PDFProps) => {
+  const [isClient, setIsClient] = useState(false)  
   
-}
-// var View: any;
-// var Text: any;
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
-const PDF: React.SFC<PDFProps> = () => {
-  return (
-    <div>
-
-      <View>
-        <Text>Saskaita Faktura</Text>
-        <Text>Sutarties Nr. 21/05-04</Text>
-        <Text>2021-05-04</Text>
-      </View>
-      {/* <PDFViewer>
-        <Document>
-          <Page size="A4" style={styles.pageWrap}>
-            <View style={styles.invoiceTitleWrap}>
-              <Text style={{ fontSize: 24 }}>Saskaita Faktura</Text>
-              <Text>Sutarties Nr. 21/05-04</Text>
-              <Text>2021-05-04</Text>
-            </View>
-          </Page>
-        </Document>
-      </PDFViewer> */}
+  return ( 
+    <div style={{height: "100vh"}}>
+      {isClient && (
+        <PDF invoiceContent={invoiceContent}/>
+      )}
     </div>
-  );
+   );
 }
 
-export default PDF;
+export const getStaticProps: GetStaticProps = async () => {
+  const invoiceContent: invoiceContentStructure = invoiceContentData
+  return { props: { invoiceContent } }
+}
+
+export default HOC_PDF;

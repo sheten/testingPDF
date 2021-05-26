@@ -1,0 +1,8 @@
+{
+  "A": "A simple example",
+  "B": "Change locale",
+  "C": "To second page",
+  "test": "A {{statusCode}} error occurred on server",
+  "dz": "An error occurred on the server",
+  "title": "Home | next-i18next"
+}
