@@ -16,6 +16,8 @@ const DLayout = ({ children }: Props) => (
 const LayoutWrap = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: PT sans;
+  font-weight: 500;
   margin: 0 auto;
   padding: 0 ${LAYOUT_PADDING}px;
   width: ${DESKTOPS_SIZE - LAYOUT_PADDING * 2}px;

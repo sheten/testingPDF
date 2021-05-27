@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 
 import { DESKTOPS_SIZE, LAPTOPS_SIZE, TABLETS_SIZE, MOBILE_SIZE, DESKTOPS_PRODUCT_SIZE, LAPTOPS_PRODUCT_SIZE, TABLETS_PRODUCT_SIZE, DEFAULT_PRODUCT_SIZE } from "../../../config"
 
-const Product = () => {
+const ProductCard = () => {
   const { t } = useTranslation();
 
   return (
@@ -61,8 +61,8 @@ const InfoWrap = styled.div`
 const InfoTextWrap = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 20px;
+  justify-content: space-between;
+  padding: 14px 20px;
 `;
 
-export default Product
+export default ProductCard

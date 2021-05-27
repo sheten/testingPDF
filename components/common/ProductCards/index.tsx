@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'next-i18next'
-import ProductHolder from "./ProductHolder"
-import { TABLETS_SIZE, MOBILE_SIZE } from "../../../config"
+import ProductsGridHolder from "./ProductsGridHolder"
+import ProductsList from "./ProductsList"
+import { MOBILE_SIZE } from "../../../config"
+import { FaBorderAll, FaBars } from "react-icons/fa"
 
 // type Props = {
 //   children?: ReactNode
@@ -11,15 +13,27 @@ import { TABLETS_SIZE, MOBILE_SIZE } from "../../../config"
 
 const ProductCards = () => {
   const { t } = useTranslation();
+  const [listMode, setListMode] = useState(false)
 
   return (
     <Wrap>
-      <ItemsTitleWrap>
-        <ItemsTitle>{t('productCategories:Juices')}</ItemsTitle>
-        <ItemsDescription>{t('productCategories:JuicyBits')}</ItemsDescription>
-      </ItemsTitleWrap>
+      <Container>
+        <ProductsTitleWrap>
+          <ProductsTitle>{t('productCategories:Juices')}</ProductsTitle>
+          <ProductsDescription>{t('productCategories:JuicyBits')}</ProductsDescription>
+        </ProductsTitleWrap>
 
-      <ProductHolder />
+        <DisplayIconsWrap onClick={() => setListMode(!listMode)}>
+          <FaBars color={listMode ? undefined : "grey" } style={{ cursor: "pointer", fontSize: "1.5em", padding: "8px" }}/>
+          <FaBorderAll color={listMode ? "grey" : undefined} style={{ cursor: "pointer", fontSize: "1.5em", padding: "8px" }}/>
+        </DisplayIconsWrap>
+      </Container>
+
+      {listMode ?
+        <ProductsList />
+        :        
+        <ProductsGridHolder />
+      }
     </Wrap>
   )
 }
@@ -27,21 +41,31 @@ const ProductCards = () => {
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  @media (max-width: ${MOBILE_SIZE}px) {
-    width: 100%;
-  }
+  width: 100%;
 `;
-const ItemsTitleWrap = styled.div`
+const Container = styled.div`
+  align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 30px 0 15px 0;
   width: 100%;
 `;
-const ItemsTitle = styled.div`
+const ProductsTitleWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const DisplayIconsWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  font-weight: 700;
+`;
+const ProductsTitle = styled.div`
   font-size: 1.4em;
   font-weight: 700;
 `;
-const ItemsDescription = styled.div`
+const ProductsDescription = styled.div`
   font-size: 0.9em;
   font-weight: 500;
 `;

@@ -2,21 +2,20 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { firestore } from "../../utils/firebase";
 import ProductForm from './common/ProductForm'
-import { Product } from '../../interfaces'
+import { ProductStructure } from '../../interfaces'
 
 
 const NewProduct = () => {
-  const [formData, setFormData] = useState<Product>({
+  const [formData, setFormData] = useState<ProductStructure>({
     id: "",
     title: "",
     description: "",
-    amount: NaN,
-    price: NaN,
+    amount: 0,
+    price: 0,
   })
 
-  const handleFormSubmit = (product: Product, e: any) => {
+  const handleFormSubmit = (product: ProductStructure, e: any) => {
     e.preventDefault();
-
     if (product.title && product.description && product.amount && product.price) {
       var newProduct = firestore.collection("Products").doc();
       newProduct.set({

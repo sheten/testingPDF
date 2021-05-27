@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <HeaderWrap>
       <ChangeLanguageWrap onClick={() => handleLanguageChange()}>
-        <FaMapMarkerAlt /> {language === 'lt' ?  "LT" : "EN"}
+        <FaMapMarkerAlt /> {language === 'lt' ? "EN" : "LT"}
       </ChangeLanguageWrap>
 
       <Link href={"/CMS"}>

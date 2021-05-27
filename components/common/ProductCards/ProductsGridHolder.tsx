@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Product from "./Product"
+import Product from "./ProductCard"
 
 import { DESKTOPS_SIZE, LAPTOPS_SIZE, TABLETS_SIZE, MOBILE_SIZE, GAP_BETWEEN_PRODUCTS } from "../../../config"
 
@@ -11,18 +11,19 @@ import { DESKTOPS_SIZE, LAPTOPS_SIZE, TABLETS_SIZE, MOBILE_SIZE, GAP_BETWEEN_PRO
 
 const items = ["Riesutas", "Slyva", "Razina", "Vaisius", "Abrikosas"]
 
-const ProductHolder = () => (
-  <ProductWrap>
+const ProductsGridHolder = () => (
+  <ProductsWrap>
     {items.map((item) => {
       return <Product key={item}/>
     })}
-  </ProductWrap>
+  </ProductsWrap>
 )
 
-const ProductWrap = styled.div`
+const ProductsWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: ${GAP_BETWEEN_PRODUCTS}px;
+  margin: 0 auto;
 
   @media (max-width: ${DESKTOPS_SIZE}px) {
     grid-template-columns: repeat(3, 1fr);
@@ -38,4 +39,4 @@ const ProductWrap = styled.div`
   }
 `;
 
-export default ProductHolder
+export default ProductsGridHolder

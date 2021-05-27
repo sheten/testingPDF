@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FaUpload } from "react-icons/fa"
-import { Product } from '../../../interfaces'
+import { ProductStructure } from '../../../interfaces'
 
 type Props = {
-  product: Product,
-  handleFormSubmit(product: Product, e?: any): void;
+  product: ProductStructure,
+  handleFormSubmit(product: ProductStructure, e?: any): void;
 }
 
 const ProductForm = ({ product, handleFormSubmit }: Props) => {
@@ -22,11 +22,15 @@ const ProductForm = ({ product, handleFormSubmit }: Props) => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    console.log(Object.values(formData))
   };
 
 
   return (
-    <Form onSubmit={() => handleFormSubmit(formData)}>
+    <Form onSubmit={(e: any) => { 
+      // e.preventDefault();
+      handleFormSubmit(formData, e)
+     }}>
         <Container>
           <ItemWrap>
             <Label>Title</Label>

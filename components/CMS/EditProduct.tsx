@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import ProductForm from './common/ProductForm'
 import { firestore } from "../../utils/firebase"; 
-import { Product } from '../../interfaces'
+import { ProductStructure } from '../../interfaces'
 
 type Props = {
   openedEditProductTitle: string,
-  productProps: Product,
+  productProps: ProductStructure,
 }
 
 const EditProduct = ({ openedEditProductTitle, productProps }: Props) => {
@@ -17,10 +17,11 @@ const EditProduct = ({ openedEditProductTitle, productProps }: Props) => {
   //   price: NaN,
   // })
 
-  const handleFormSubmit = (product: Product, e: any) => {
+  const handleFormSubmit = (product: ProductStructure, e: any) => {
     e.preventDefault();
+    console.log("PRODUCT:  " + Object.values(product))
 
-    if (product.id && product.title && product.description && product.amount && product.price) {
+    if (product.title && product.description && product.amount && product.price) {
       firestore
         .collection("Products")
         .doc(product.id)

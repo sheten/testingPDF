@@ -56,19 +56,10 @@ export type finalSumStructure = {
 }
 
 // CMS
-
-export type Product = {
-  id: string,
+export type ProductStructure = {
+  id: string | undefined,
   title: string, 
   description: string, 
   amount: number, 
   price: number, 
-}
-
-export type Productz = {
-  id: string,
-  title: string,
-  description: string,
-  amount: number,
-  price: number,
 }

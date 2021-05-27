@@ -3,11 +3,11 @@ import Image from 'next/image'
 import styled from 'styled-components'
 import { FaEdit, FaEllipsisV } from "react-icons/fa"
 import { TABLETS_SIZE } from "../../config"
-import { Product } from '../../interfaces'
+import { ProductStructure } from '../../interfaces'
 
 type Props = {
   currentMenuCategorySection: string,
-  products: Product[] ,
+  products: ProductStructure[] ,
   handleOpenSection(sectionType: string, productTitle?:string): void;
   newProductSectionOpen: boolean,
 }

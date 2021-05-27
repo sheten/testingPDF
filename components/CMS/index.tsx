@@ -5,12 +5,12 @@ import Menu from "./Menu"
 import NewProduct from "./NewProduct"
 import EditProduct from "./EditProduct"
 import { firestore } from "../../utils/firebase";
-import { Product } from '../../interfaces'
+import { ProductStructure } from '../../interfaces'
 // import { COLOR_BLUE } from "../../config"
 
 const CMSHome = () => {
   const [products, setProducts] = useState([])
-  const [editableProduct, setEditableProduct] = useState<Product>()
+  const [editableProduct, setEditableProduct] = useState<ProductStructure>()
   const [openedMenuCategoryTitle, setOpenedMenuCategoryTitle] = useState<string>("")
   const [openedEditProductTitle, setOpenedEditProductTitle] = useState<string>("")
   const [openedSectionsList, setOpenedSectionsList] = useState<sectionsStructure>({
@@ -21,15 +21,17 @@ const CMSHome = () => {
   type sectionsStructure = { menuCategorySectionOpen: boolean, newProductSectionOpen: boolean, editProductSectionOpen: boolean }
 
   useEffect(() => {
-    async function fetchFirebaseData() {
-      var productsList: any = []
-      const snapshot = await firestore.collection("Products").get();
-      snapshot.docs.forEach((doc) => productsList.push(doc.data()));
-      setProducts(productsList)
+    if (products.length === 0) {
+      fetchFirebaseData()
     }
+  })
 
-    fetchFirebaseData()
-  }, [])
+  async function fetchFirebaseData() {
+    var productsList: any = []
+    const snapshot = await firestore.collection("Products").get();
+    snapshot.docs.forEach((doc) => productsList.push(doc.data()));
+    setProducts(productsList)
+  }
 
   const handleOpenSection = (sectionType: string, productTitle: string) => {
     if (sectionType === "menuCategorySectionOpen") {
@@ -43,15 +45,22 @@ const CMSHome = () => {
     } 
     else if (sectionType === "editProductSectionOpen") {
       // Storing currently editable product data into state to pass for children component
-      const editableProduct = products.find((product: Product) => product.title === openedEditProductTitle);
+      const editableProduct = products.find((product: ProductStructure) => product.title === productTitle);
       setEditableProduct(editableProduct)
       console.log(editableProduct)
 
 
       // Checking if one has already been opened and if it is just switching between items
-      // if (openedSectionsList.newProductSectionOpen) { setOpenedSectionsList({ ...openedSectionsList, newProductSectionOpen: !openedSectionsList.newProductSectionOpen }) }
-      productTitle === openedEditProductTitle || !openedEditProductTitle ? setOpenedSectionsList({ ...openedSectionsList, editProductSectionOpen: !openedSectionsList.editProductSectionOpen }) : null      
-      setOpenedEditProductTitle(productTitle)
+      // if (openedSectionsList.newProductSectionOpen) { setOpenedSectionsList({ ...openedSectionsList, newProductSectionOpen: !openedSectionsList.newProductSectionOpen }) }      
+      if (openedEditProductTitle === ""){
+        setOpenedSectionsList({ ...openedSectionsList, editProductSectionOpen: !openedSectionsList.editProductSectionOpen })
+        setOpenedEditProductTitle(productTitle)
+      } else if (productTitle === openedEditProductTitle) {
+        setOpenedSectionsList({ ...openedSectionsList, editProductSectionOpen: !openedSectionsList.editProductSectionOpen })
+        setOpenedEditProductTitle("")
+      } else if (productTitle !== openedEditProductTitle){
+        setOpenedEditProductTitle(productTitle)
+      }
     }
   }
 
@@ -73,6 +82,7 @@ const CMSHome = () => {
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: open sans;
   height: 100vh;
   width: 100%;
 `;
@@ -83,6 +93,7 @@ const Header = styled.div`
   display: flex;
   height: 34px;
   padding: 8px;
+  padding-left: 20px;
 `;
 const ContentWrap = styled.div`
   display: flex;
