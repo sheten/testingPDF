@@ -47,7 +47,7 @@ export type finalSumStructure = {
 
 export type ProductsStoreStructure = {
   productsList: ProductsStructure,
-  categoriesList: string[],
+  categoriesList: CategoriesStructure,
 }
 export type ProductsStructure = ProductStructure[]
 export type ProductStructure = {
@@ -64,7 +64,10 @@ export type SectionsStructure = {
   newProductSectionOpen: boolean, 
   editProductSectionOpen: boolean 
 }
-export type CategoriesStructure = string[]
+export type CategoriesStructure = CategoryStructure[]
+export type CategoryStructure = {
+  title: string,
+}
 export type FilterableSelectOptionsStructure = FilterableSelectionStructure[]
 export type FilterableSelectionStructure = { 
   value: string, label: string 

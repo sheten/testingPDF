@@ -31,6 +31,7 @@ const Img = styled.img`
   border-radius: 3px;
   width: 40px;
   height: 40px;
+  object-fit: cover;
 `;
 
 export default MenuOptionImage
