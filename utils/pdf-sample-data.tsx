@@ -1,5 +1,4 @@
 import { 
-  User,
   invoiceContentStructure,
   invoiceDataStructure,
   sellerDataStructure,
@@ -8,13 +7,7 @@ import {
   finalSumStructure,
 } from '../interfaces'
 
-/** Dummy user data. */
-export const sampleUserData: User[] = [
-  { id: 101, name: 'Alice' },
-  { id: 102, name: 'Bob' },
-  { id: 103, name: 'Caroline' },
-  { id: 104, name: 'Dave' },
-]
+
 const invoiceData: invoiceDataStructure = { 
   title: "Saskaita Faktura", 
   number: "Sutarties Nr. 21/05-4", 
@@ -47,8 +40,8 @@ const finalSumData: finalSumStructure = {
   sumInWordsTitle: "Suma zodziais: ",
   sumInWords: "Penkiasdesimt euru",
   invoiceWrittenByTitle: "Saskaita israse: ",
-  invoiceWrittenBy: "Shetten Dziugys",
-}
+  invoiceWrittenBy: "Sheten Dziugys",
+};
 
 export const invoiceContentData: invoiceContentStructure = {
   invoiceData,

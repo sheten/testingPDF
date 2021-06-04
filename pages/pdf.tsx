@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GetStaticProps } from 'next'
 
 import { invoiceContentStructure } from "../interfaces"
-import { invoiceContentData } from "../utils/sample-data"
+import { invoiceContentData } from "../utils/pdf-sample-data"
 
 import PDF from "../components/PDF";
 

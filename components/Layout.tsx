@@ -1,41 +1,36 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import styled from 'styled-components'
+
+import { DESKTOPS_SIZE, LAPTOPS_SIZE, TABLETS_SIZE, MOBILE_SIZE, LAYOUT_PADDING } from "../config"
 
 type Props = {
   children?: ReactNode
-  title?: string
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
-      </nav>
-    </header>
+const DLayout = ({ children }: Props) => (
+  <LayoutWrap>
     {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
-  </div>
+  </LayoutWrap> 
 )
 
-export default Layout
+const LayoutWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-family: open sans;
+  font-weight: 600;
+  margin: 0 auto;
+  padding: 0 ${LAYOUT_PADDING}px;
+  width: ${DESKTOPS_SIZE - LAYOUT_PADDING * 2}px;
+
+  @media (max-width: ${DESKTOPS_SIZE}px) {
+    width: ${LAPTOPS_SIZE - LAYOUT_PADDING * 2}px;
+  }
+  @media (max-width: ${LAPTOPS_SIZE}px) {
+    width: ${TABLETS_SIZE - LAYOUT_PADDING * 2}px;
+  }
+  @media (max-width: ${TABLETS_SIZE}px) {
+    width: auto;
+  }
+`;
+
+export default DLayout

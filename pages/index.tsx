@@ -1,15 +1,17 @@
-import Link from 'next/link'
 import Layout from '../components/Layout'
+import Homepage from '../components'
+import { store } from "../redux/store"
+import { Provider } from 'react-redux'
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+const HomePage = () => {
 
-export default IndexPage
+  return(
+    <Provider store={store}>
+      <Layout>
+        <Homepage />
+      </Layout>
+    </Provider>
+  )
+}
+
+export default HomePage

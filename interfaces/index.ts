@@ -1,15 +1,3 @@
-// You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import { User } from 'path/to/interfaces';
-
-export type User = {
-  id: number
-  name: string
-}
-
-
 //PDF
 export type invoiceContentStructure = {
   invoiceData: invoiceDataStructure,
@@ -56,10 +44,28 @@ export type finalSumStructure = {
 }
 
 // CMS
+
+export type ProductsStoreStructure = {
+  productsList: ProductsStructure,
+  categoriesList: string[],
+}
+export type ProductsStructure = ProductStructure[]
 export type ProductStructure = {
-  id: string | undefined,
+  id: string,
   title: string, 
+  imageTitle: string,
+  category: string,
   description: string, 
   amount: number, 
   price: number, 
+}
+export type SectionsStructure = {
+  menuCategorySectionOpen: boolean, 
+  newProductSectionOpen: boolean, 
+  editProductSectionOpen: boolean 
+}
+export type CategoriesStructure = string[]
+export type FilterableSelectOptionsStructure = FilterableSelectionStructure[]
+export type FilterableSelectionStructure = { 
+  value: string, label: string 
 }

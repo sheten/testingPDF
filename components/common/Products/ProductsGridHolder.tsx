@@ -3,21 +3,23 @@ import styled from 'styled-components'
 import Product from "./ProductCard"
 
 import { DESKTOPS_SIZE, LAPTOPS_SIZE, TABLETS_SIZE, MOBILE_SIZE, GAP_BETWEEN_PRODUCTS } from "../../../config"
+import { ProductStructure } from "../../../interfaces"
 
-// type Props = {
-//   children?: ReactNode
-//   title?: string
-// }
+type Props = {
+  products: ProductStructure[],
+}
 
-const items = ["Riesutas", "Slyva", "Razina", "Vaisius", "Abrikosas"]
+// const items = ["Riesutas", "Slyva", "Razina", "Vaisius", "Abrikosas"]
 
-const ProductsGridHolder = () => (
-  <ProductsWrap>
-    {items.map((item) => {
-      return <Product key={item}/>
-    })}
-  </ProductsWrap>
-)
+const ProductsGridHolder = ({products} :Props) => {
+  return(
+    <ProductsWrap>
+      {products.map((product, i) => {
+        return <Product product={product} key={i}/>
+      })}
+    </ProductsWrap>
+  )
+}
 
 const ProductsWrap = styled.div`
   display: grid;

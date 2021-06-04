@@ -2,7 +2,7 @@ export const DESKTOPS_SIZE = 1280;
 export const LAPTOPS_SIZE = 1024;
 export const TABLETS_SIZE = 768;
 export const MOBILE_SIZE = 480;
-
+export const SUPER_SMALL_SIZE = 320;
 
 
 export const GAP_BETWEEN_PRODUCTS = 16;

@@ -1,58 +1,48 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProductForm from './common/ProductForm'
-import { firestore } from "../../utils/firebase"; 
+import ProductForm from './ProductForm'
+import { firestore } from "../../utils/firebase";
 import { ProductStructure } from '../../interfaces'
 
 type Props = {
-  openedEditProductTitle: string,
+  editableProductTitle: string,
   productProps: ProductStructure,
+  updateProducts: () => void,
 }
 
-const EditProduct = ({ openedEditProductTitle, productProps }: Props) => {
-  // const [formData, setFormData] = useState({
-  //   title: "",
-  //   description: "",
-  //   amount: NaN,
-  //   price: NaN,
-  // })
+const EditProduct = ({ editableProductTitle, productProps, updateProducts }: Props) => {
 
   const handleFormSubmit = (product: ProductStructure, e: any) => {
     e.preventDefault();
-    console.log("PRODUCT:  " + Object.values(product))
-
-    if (product.title && product.description && product.amount && product.price) {
+    if (product.id && product.title && product.imageTitle && product.category && product.description && product.amount && product.price) {
       firestore
         .collection("Products")
         .doc(product.id)
         .update({
           title: product.title,
+          imageTitle: product.imageTitle,
+          category: product.category,
           description: product.description,
           amount: product.amount,
           price: product.price,
         })
         .then(() => {
-          alert("Details Updated!")
+          updateProducts();
+          alert("Details Updated!");
         });
     } else {
-      alert("Please fill every field!")
+      alert("Please fill every field!");
     }
   };
-  // const updateProductField = (e: any) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value
-  //   });
-  // };
 
 
   return (
     <Wrap>
       <Header>
-        {openedEditProductTitle}
+        {editableProductTitle}
       </Header>
-
-      <ProductForm handleFormSubmit={handleFormSubmit} product={productProps}/>
+      
+      <ProductForm handleFormSubmit={handleFormSubmit} product={productProps} />
     </Wrap>
   )
 }
